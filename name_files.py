@@ -9,7 +9,8 @@ def find_files(directory_to_search: str, file_extension: str) -> list:
     :return a list containing all the filenames of the chosen type.
     """
     return [directory_to_search + "\\" + f for f in listdir(directory_to_search)
-            if isfile(join(directory_to_search, f)) if f[-4:] == file_extension]
+            if isfile(join(directory_to_search, f)) if
+            f[-len(file_extension):] == file_extension]
 
 
 def separator_symbols(length=80, separator="-") -> str:
@@ -43,10 +44,11 @@ if __name__ == "__main__":
     new_name_list = []
     files_to_process = []
     old_path_name = "_"
-    # User chooses a path where the files are in:
+    # User chooses a path and file type by extension:
     while True:
         chosen_directory = input("Directory path (C:\\path_of_directory): ")
-        chosen_file_type = ".mp3"   # could be changed to input.
+        chosen_file_type = input("What is the extension of the file(s) you want"
+                                 "to change? example: '.mp3'")
         try:
             files_to_process = find_files(chosen_directory, chosen_file_type)
         except FileNotFoundError:
@@ -71,7 +73,6 @@ if __name__ == "__main__":
         print(separator_symbols(10 + len(chosen_directory)))
     for entry in files_to_process:
         print(entry)
-    print(separator_symbols(10 + len(chosen_directory)))
 
     # Main options menu:
     while True and files_to_process and not new_name_list:
