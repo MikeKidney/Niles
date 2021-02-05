@@ -1,2 +1,2 @@
 # Niles
-Simple file rename programm without GUI (my first programm, kinda spaghetti)
+Simple file rename programm without GUI (my first program, kinda spaghetti)
